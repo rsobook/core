@@ -1,12 +1,27 @@
 group 'si.fri.rsobook.core'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 apply plugin: 'java'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 
+// 'http://localhost:8081/repository/maven-releases/'
+
+ext {
+    nexusUsername = System.getProperty("NEXUS_USERNAME")
+    nexusPassword = System.getProperty("NEXUS_PASSWORD")
+}
+
 repositories {
     mavenCentral()
+    maven {
+        url 'https://box.kisek.si/nexus/repository/maven-releases'
+        credentials {
+            username nexusUsername
+            password nexusPassword
+        }
+    }
 }
 
 dependencies {
@@ -19,4 +34,17 @@ dependencies {
     compile group: 'com.github.tfaga.lynx', name: 'lynx-core', version: '1.1.0'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://box.kisek.si/nexus/repository/maven-releases") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+            pom.version = "1.0"
+            pom.artifactId = "core"
+            pom.groupId = "si.fri.rsobook"
+        }
+    }
 }
