@@ -1,17 +1,10 @@
 group 'si.fri.rsobook'
-version '1.0'
+version '1.1'
 
 apply plugin: 'java'
 apply plugin: 'maven'
 
 sourceCompatibility = 1.8
-
-// 'http://localhost:8081/repository/maven-releases/'
-
-ext {
-    nexusUsername = System.getProperty("NEXUS_USERNAME")
-    nexusPassword = System.getProperty("NEXUS_PASSWORD")
-}
 
 repositories {
     mavenCentral()
@@ -38,9 +31,9 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: "https://box.kisek.si/nexus/repository/maven-releases") {
-                authentication(userName: nexusUsername, password: nexusPassword)
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
             }
-            pom.version = "1.0"
+            pom.version = "1.1"
             pom.artifactId = "core"
             pom.groupId = "si.fri.rsobook"
         }
