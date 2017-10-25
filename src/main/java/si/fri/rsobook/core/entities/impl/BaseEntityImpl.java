@@ -26,8 +26,8 @@ public interface BaseEntityImpl<I, T extends BaseEntityImpl> {
     void genericPatch(T object, EntityManager em) throws IllegalAccessException;
 
     boolean areObjectDifferent(Class type, Field field, Object e1, Object e2);
-    boolean isUpdateDifferent(BaseEntityImpl entity) throws IllegalAccessException;
-    boolean isPatchDifferent(BaseEntityImpl entity) throws IllegalAccessException;
+    boolean isUpdateDifferent(T entity) throws IllegalAccessException;
+    boolean isPatchDifferent(T entity) throws IllegalAccessException;
 
     void setAllBasePropertiesToNull();
 

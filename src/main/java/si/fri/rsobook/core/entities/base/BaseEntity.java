@@ -1,4 +1,4 @@
-package si.fri.rsobook.core.entities;
+package si.fri.rsobook.core.entities.base;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,12 +12,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 @MappedSuperclass
-public abstract class BaseEntity<T extends BaseEntity> implements Serializable, BaseEntityImpl<Integer, T> {
-
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "id")
-    protected Integer id;
+public abstract class BaseEntity<I, T extends BaseEntity> implements Serializable, BaseEntityImpl<I, T> {
 
     @Version
     protected Integer version;
@@ -45,7 +40,6 @@ public abstract class BaseEntity<T extends BaseEntity> implements Serializable, 
 
     @JsonIgnore
     public void prePersist(){
-        id = null;
         version = null;
         isDeleted = false;
 
@@ -205,7 +199,7 @@ public abstract class BaseEntity<T extends BaseEntity> implements Serializable, 
     }
 
     @JsonIgnore
-    public boolean isUpdateDifferent(BaseEntity entity) throws IllegalAccessException {
+    public boolean isUpdateDifferent(T entity) throws IllegalAccessException {
         for (Field field : getAllClassFields()) {
             if(genericIsDifferentSkip(field)){
                 continue;
@@ -234,7 +228,7 @@ public abstract class BaseEntity<T extends BaseEntity> implements Serializable, 
     }
 
     @JsonIgnore
-    public boolean isPatchDifferent(BaseEntity entity) throws IllegalAccessException {
+    public boolean isPatchDifferent(T entity) throws IllegalAccessException {
         for (Field field : getAllClassFields()) {
             if(genericIsDifferentSkip(field)){
                 continue;
@@ -264,7 +258,6 @@ public abstract class BaseEntity<T extends BaseEntity> implements Serializable, 
 
     @JsonIgnore
     public void setAllBasePropertiesToNull(){
-        id = null;
         version = null;
         isDeleted = null;
         createdOn = null;
@@ -322,14 +315,6 @@ public abstract class BaseEntity<T extends BaseEntity> implements Serializable, 
     @JsonIgnore
     public EntityTag getEntityTag() {
         return new EntityTag(Long.toString(editedOn.getTime()));
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getVersion() {

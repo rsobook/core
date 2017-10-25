@@ -1,4 +1,4 @@
-group 'si.fri.rsobook.core'
+group 'si.fri.rsobook'
 version '1.0'
 
 apply plugin: 'java'
@@ -17,10 +17,6 @@ repositories {
     mavenCentral()
     maven {
         url 'https://box.kisek.si/nexus/repository/maven-releases'
-        credentials {
-            username nexusUsername
-            password nexusPassword
-        }
     }
 }
 
@@ -32,6 +28,8 @@ dependencies {
 
     compile group: 'org.jinq', name: 'jinq-jpa', version: '1.8.19'
     compile group: 'com.github.tfaga.lynx', name: 'lynx-core', version: '1.1.0'
+
+    compile group: 'org.hibernate', name: 'hibernate-annotations', version: '3.5.6-Final'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

@@ -1,4 +1,4 @@
-package si.fri.rsobook.core.entities;
+package si.fri.rsobook.core.entities.base;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import si.fri.rsobook.core.entities.impl.BaseEntityImpl;
@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 import java.lang.reflect.Field;
 
 @MappedSuperclass
-public abstract class BaseEntityVersion<T extends BaseEntityVersion> extends BaseEntity<T> implements BaseEntityImpl<Integer, T> {
+public abstract class BaseEntityVersion<I, T extends BaseEntityVersion> extends BaseEntity<I, T> implements BaseEntityImpl<I, T> {
 
     @Column(name = "origin_id")
     protected Integer originId;
