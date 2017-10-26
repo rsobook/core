@@ -2,15 +2,16 @@ package si.fri.rsobook.core.entities;
 
 import si.fri.rsobook.core.entities.base.BaseEntity;
 
-import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
-public class EntityUUID extends BaseEntity<UUID, EntityUUID> {
+@MappedSuperclass
+public abstract class EntityUUID<T extends EntityUUID> extends BaseEntity<UUID, T> {
 
     @Id
-    @org.hibernate.annotations.Type(type="pg-uuid")
-    @Column(name = "id")
+    @GeneratedValue
     protected UUID id;
 
     @Override

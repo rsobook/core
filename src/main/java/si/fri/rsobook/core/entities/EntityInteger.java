@@ -2,15 +2,13 @@ package si.fri.rsobook.core.entities;
 
 import si.fri.rsobook.core.entities.base.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-public abstract class EntityInteger extends BaseEntity<Integer, EntityInteger> {
+@MappedSuperclass
+public abstract class EntityInteger<T extends EntityInteger> extends BaseEntity<Integer, T> {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     protected Integer id;
 
