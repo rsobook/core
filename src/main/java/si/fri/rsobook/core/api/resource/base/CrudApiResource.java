@@ -12,9 +12,9 @@ import si.fri.rsobook.core.api.data.response.EntityResponse;
 import si.fri.rsobook.core.api.exception.ApiException;
 import si.fri.rsobook.core.entities.impl.BaseEntityImpl;
 
-public class CrudResource<T extends BaseEntityImpl> extends GetResource<T> {
+public class CrudApiResource<T extends BaseEntityImpl> extends GetApiResource<T> {
 
-    public CrudResource(ApiCore client, Class<T> type) {
+    public CrudApiResource(ApiCore client, Class<T> type) {
         super(client, type);
     }
 

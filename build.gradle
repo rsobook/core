@@ -1,5 +1,5 @@
 group 'si.fri.rsobook'
-version '1.2'
+version '1.3'
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -29,12 +29,13 @@ dependencies {
 }
 
 uploadArchives {
+    group 'maven'
     repositories {
         mavenDeployer {
             repository(url: "https://box.kisek.si/nexus/repository/maven-releases") {
                 authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
             }
-            pom.version = "1.2"
+            pom.version = "1.3"
             pom.artifactId = "core"
             pom.groupId = "si.fri.rsobook"
         }

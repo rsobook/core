@@ -24,7 +24,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Resource<T extends BaseEntityImpl> {
+public abstract class ApiResource<T extends BaseEntityImpl> {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -37,7 +37,7 @@ public abstract class Resource<T extends BaseEntityImpl> {
 
     protected boolean defaultContentHeader = false;
 
-    public Resource(ApiCore core, Class<T> type) {
+    public ApiResource(ApiCore core, Class<T> type) {
         this.type = type;
         this.core = core;
         this.endpointUrl = core.getConfiguration().hostName + "/" + type.getSimpleName();

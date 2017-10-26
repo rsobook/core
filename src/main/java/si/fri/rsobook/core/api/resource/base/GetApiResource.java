@@ -11,9 +11,9 @@ import si.fri.rsobook.core.api.exception.ApiException;
 import si.fri.rsobook.core.entities.impl.BaseEntityImpl;
 
 
-public class GetResource<T extends BaseEntityImpl> extends Resource<T> {
+public class GetApiResource<T extends BaseEntityImpl> extends ApiResource<T> {
 
-    public GetResource(ApiCore core, Class<T> type) {
+    public GetApiResource(ApiCore core, Class<T> type) {
         super(core, type);
     }
 
