@@ -12,30 +12,22 @@ import java.util.UUID;
 @Entity
 @Table(name="user_messages")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
-public class UserMessages extends EntityUUID<UserMessages> {
+public class UserWall extends EntityUUID<UserWall> {
 
-    private UUID senderId;
+    private UUID userId;
 
-    private UUID recipientID;
+    private String title;
 
     @Column(columnDefinition="TEXT")
     private String content;
 
 
-    public UUID getSenderId() {
-        return senderId;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setSenderId(UUID senderId) {
-        this.senderId = senderId;
-    }
-
-    public UUID getRecipientID() {
-        return recipientID;
-    }
-
-    public void setRecipientID(UUID recipientID) {
-        this.recipientID = recipientID;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
     public String getContent() {
@@ -44,5 +36,13 @@ public class UserMessages extends EntityUUID<UserMessages> {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
