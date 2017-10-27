@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import si.fri.rsobook.core.entities.EntityUUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.UUID;
@@ -17,6 +18,7 @@ public class UserMessages extends EntityUUID<UserMessages> {
 
     private UUID recipientID;
 
+    @Column(columnDefinition="TEXT")
     private String content;
 
 
