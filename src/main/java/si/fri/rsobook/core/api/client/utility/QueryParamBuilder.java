@@ -12,22 +12,22 @@ import java.util.List;
 
 public class QueryParamBuilder {
 
-    public final String AND = "%7C"; //'|';
-    public final String OR = "%2C"; //',';
+    public static final String AND = "%7C"; //'|';
+    public static final String OR = "%2C"; //',';
 
-    public final String LIKE = ":like:";
-    public final String LIKEIC = ":likeic:";
-    public final String EQ = ":eq:";
-    public final String GEQ = ":gte:";
-    public final String LEQ = ":lte:";
-    public final String IS_NULL = ":isnull";
-    public final String IS_NOT_NULL = ":isnotnull";
+    public static final String LIKE = ":like:";
+    public static final String LIKEIC = ":likeic:";
+    public static final String EQ = ":eq:";
+    public static final String GEQ = ":gte:";
+    public static final String LEQ = ":lte:";
+    public static final String IS_NULL = ":isnull";
+    public static final String IS_NOT_NULL = ":isnotnull";
 
-    public final String E_MOD = "%25"; // '%'
-    public final String E_AND = "%26"; // '&'
-    public final String E_WS = "%20"; // ' '
+    public static final String E_MOD = "%25"; // '%'
+    public static final String E_AND = "%26"; // '&'
+    public static final String E_WS = "%20"; // ' '
 
-    public final String PAR = "'";
+    public static final String PAR = "'";
 
     final static public SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
@@ -59,6 +59,8 @@ public class QueryParamBuilder {
 
     private Boolean defaultIsDeleted = false;
     private Boolean defaultIsLatest = null;
+
+    private String joinOP = AND;
 
     public  QueryParamBuilder(){
         defaultWhereConditions = new ArrayList<>();
@@ -247,7 +249,7 @@ public class QueryParamBuilder {
             sb.append(whereConditions.get(0));
 
             for(int i=1; i<whereConditions.size(); i++){
-                sb.append(AND);
+                sb.append(joinOP);
                 sb.append(whereConditions.get(i));
             }
         }
@@ -327,5 +329,13 @@ public class QueryParamBuilder {
 
     public void setDefaultIsLatest(Boolean defaultIsLatest) {
         this.defaultIsLatest = defaultIsLatest;
+    }
+
+    public String getJoinOP() {
+        return joinOP;
+    }
+
+    public void setJoinOP(String joinOP) {
+        this.joinOP = joinOP;
     }
 }
