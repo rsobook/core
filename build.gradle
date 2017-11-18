@@ -1,5 +1,5 @@
 group 'si.fri.rsobook'
-version '1.2'
+version '1.2.2'
 
 apply plugin: 'java'
 apply plugin: 'maven'

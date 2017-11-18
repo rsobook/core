@@ -10,13 +10,11 @@ import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
-@Table(name="user_messages")
+@Table(name="user_wall")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class UserWall extends EntityUUID<UserWall> {
 
     private UUID userId;
-
-    private String title;
 
     @Column(columnDefinition="TEXT")
     private String content;
@@ -38,11 +36,4 @@ public class UserWall extends EntityUUID<UserWall> {
         this.content = content;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }
